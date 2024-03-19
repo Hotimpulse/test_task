@@ -25,11 +25,14 @@ h3 {
 }
 
 select {
+  min-width: 300px;
   border-radius: 0.2rem;
   font-size: 1rem;
 
   height: 40px;
   padding: 0 1rem;
+  
+  cursor: pointer;
 }
 
 label {
