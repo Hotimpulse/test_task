@@ -1,7 +1,7 @@
-import { IOption } from "./IOption";
+import { IOption } from './IOption';
 
 export interface ISelectors extends React.SelectHTMLAttributes<HTMLSelectElement> {
-    label: string;
-    options: IOption[];
-    value?: string;
+  label: string;
+  options: IOption[];
+  value?: string;
 }

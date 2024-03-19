@@ -19,13 +19,6 @@
   border-radius: 1rem;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: center;
-}
-
 h3 {
   color: var(--color-primary);
   font-size: 3rem;

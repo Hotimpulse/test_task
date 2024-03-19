@@ -1,24 +1,101 @@
-import FormComponent from "@src/components/FormComponent/FormComponent.tsx";
-import { countryList, citiesList, universityList, accommodationList } from '@src/data/data.ts';
-import { IOption } from "@src/interfaces/IOption";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { IOption } from '@src/interfaces/IOption';
+import FormComponent from '@src/components/FormComponent/FormComponent.tsx';
+import {
+  countryList,
+  citiesList,
+  universityList,
+  accommodationList,
+} from '@src/data/data.ts';
+import CountryFormStyle from '@src/components/CountryForm/CountryFormStyle.module.css';
 
 export default function CountryForm() {
-    const [country, setCountry] = useState<string>('');
-    const [cities, setCities] = useState<IOption[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<string>('');
+  const [selectedCity, setSelectedCity] = useState<string>('');
 
-    useEffect(() => {
-        const filteredCities = citiesList.filter(city => city.country === country);
-        setCities(filteredCities);
-    }, [country]);
+  const [cities, setCities] = useState<IOption[]>([]);
 
-    const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCountry(event.currentTarget.value);
+  const [selectedUniversity, setSelectedUniversity] = useState<string>('');
+  const [selectedAccommodation, setSelectedAccommodation] = useState<string>('');
+
+  const [isValid, setIsValid] = useState<boolean>(false);
+
+  useEffect(() => {
+    const filteredCities = citiesList.filter((city) => city.country === selectedCountry);
+    setCities(filteredCities);
+  }, [selectedCountry]);
+
+  const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountry(event.target.value);
+    setSelectedCity('');
+  };
+
+  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(event.target.value);
+  };
+
+  const handleUniChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUniversity(event.target.value);
+  };
+
+  const handleAccommodationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedAccommodation(event.target.value);
+  };
+
+  useEffect(() => {
+    if (selectedCountry && selectedCity && selectedUniversity && selectedAccommodation) {
+      setIsValid(true);
     }
+  }, [selectedCountry, selectedCity, selectedUniversity, selectedAccommodation, isValid]);
 
-    return (
-        <div>
-            <FormComponent label='cтрана' options={countryList} onChange={handleCountryChange} />
-        </div>
-    )
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    console.log(`Data:`, selectedCountry, selectedCity, selectedUniversity, selectedAccommodation);
+  }
+
+  return (
+    <div className={CountryFormStyle.container}>
+      <form className={CountryFormStyle.form} onSubmit={handleSubmit}>
+        <FormComponent
+          label="страну"
+          options={countryList}
+          onChange={handleCountryChange}
+          value={selectedCountry}
+        />
+
+        {selectedCountry && (
+          <FormComponent
+            label="город"
+            options={cities}
+            onChange={handleCityChange}
+            value={selectedCity}
+          />
+        )}
+
+        {selectedCountry && selectedCity && (
+          <FormComponent
+            label="университет"
+            options={universityList}
+            onChange={handleUniChange}
+            value={selectedUniversity}
+          />
+        )}
+
+        {selectedCountry && selectedCity && selectedUniversity && (
+          <FormComponent
+            label="проживание"
+            options={accommodationList
+              .filter((option) => option.country.includes(selectedCountry))
+              .map((option) => ({ value: option.value }))}
+            onChange={handleAccommodationChange}
+            value={selectedAccommodation}
+          />
+        )}
+
+        <button type="submit" disabled={!isValid}>
+          Подтвердить
+        </button>
+      </form>
+    </div>
+  );
 }
