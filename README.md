@@ -49,10 +49,12 @@ export const accommodationList = [
 ```
 
 **В проекте настроены:**
+
 - Eslint
 - Prettier
 - Husky (pre-push formatting)
 
 **В проекте использованы:**
+
 - Vite
 - Jest (E2E tests)
