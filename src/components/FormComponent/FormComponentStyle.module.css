@@ -32,6 +32,12 @@ select {
   padding: 0 1rem;
 }
 
+label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-secondary2);
+}
+
 select:focus,
 select:focus-visible {
   border: 2px solid var(--color-primary2);
