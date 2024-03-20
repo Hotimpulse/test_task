@@ -13,11 +13,6 @@
     "cypress:open": "cypress open",
     "test:e2e": "cypress run --headed"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "prettier --write . && git add ."
-    }
-  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
