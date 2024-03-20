@@ -8,7 +8,7 @@ export default function FormComponent(props: ISelectors) {
   return (
     <div className={FormComponentStyle['center-flex-col']}>
       <label htmlFor={label}>{text}</label>
-      <select value={value} onChange={onChange} disabled={disabled}>
+      <select id={label} value={value} onChange={onChange} disabled={disabled}>
         <option value="">Выберите опцию</option>
         {options.map((option: IOption, index: number) => {
           return (

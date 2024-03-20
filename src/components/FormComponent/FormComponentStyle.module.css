@@ -4,8 +4,7 @@
   justify-content: center;
   align-items: center;
 
-  width: fit-content;
-  min-width: 400px;
+  width: 100%;
   gap: 1rem;
   margin: 0 auto;
   padding: 1rem;
@@ -25,7 +24,7 @@ h3 {
 }
 
 select {
-  min-width: 300px;
+  width: min(100% - 0rem, 250px);
   border-radius: 0.2rem;
   font-size: 1rem;
 
@@ -47,6 +46,11 @@ select:focus-visible {
 }
 
 button {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   border-radius: 0.2rem;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
