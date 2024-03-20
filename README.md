@@ -13,7 +13,7 @@ export interface IOption {
 export interface ISelectors {
     label: string;
     options: IOption[];
-    value?: string;
+    value: string;
 }
 ```
 
@@ -48,13 +48,13 @@ export const accommodationList = [
 ];
 ```
 
+**В проекте использованы:**
+
+- Vite
+- Cypress (E2E tests)
+
 **В проекте настроены:**
 
 - Eslint
 - Prettier
-- Husky (pre-push formatting)
-
-**В проекте использованы:**
-
-- Vite
-- Jest (E2E tests)
+- Husky (pre-commit/pre-push formatting and testing)

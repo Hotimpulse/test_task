@@ -34,10 +34,13 @@ export default function CountryForm() {
 
   const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCity(event.target.value);
+    setSelectedUniversity('');
+    setSelectedAccommodation('');
   };
 
   const handleUniChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedUniversity(event.target.value);
+    setSelectedAccommodation('');
   };
 
   const handleAccommodationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,42 +67,48 @@ export default function CountryForm() {
       selectedUniversity,
       selectedAccommodation
     );
-    alert(`Страна: ${selectedCountry}, город: ${selectedCity}, университет: ${selectedUniversity}, проживание: ${selectedAccommodation}`);
+    alert(
+      `Страна: ${selectedCountry}, город: ${selectedCity}, университет: ${selectedUniversity}, проживание: ${selectedAccommodation}`
+    );
   }
 
   return (
     <div className={CountryFormStyle.container}>
       <form className={CountryFormStyle.form} onSubmit={handleSubmit}>
         <FormComponent
-          label="страну"
+          label="country"
           options={countryList}
           onChange={handleCountryChange}
           value={selectedCountry}
+          text={'Выберите страну'}
         />
 
         <FormComponent
-          label="город"
+          label="city"
           options={cities}
           onChange={handleCityChange}
           value={selectedCity}
+          text={'Выберите город'}
           disabled={!selectedCountry}
         />
 
         <FormComponent
-          label="университет"
+          label="university"
           options={universityList}
           onChange={handleUniChange}
           value={selectedUniversity}
+          text={'Выберите университет'}
           disabled={!selectedCity}
         />
 
         <FormComponent
-          label="проживание"
+          label="accommodation"
           options={accommodationList
             .filter((option) => option.country.includes(selectedCountry))
             .map((option) => ({ value: option.value }))}
           onChange={handleAccommodationChange}
           value={selectedAccommodation}
+          text={'Выберите проживание'}
           disabled={!selectedCountry || !selectedCity || !selectedUniversity}
         />
 

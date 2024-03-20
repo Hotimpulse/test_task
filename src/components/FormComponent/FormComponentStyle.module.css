@@ -12,11 +12,11 @@
 
   background-color: color-mix(
     in srgb,
-    var(--color-primary2) 20%,
-    var(--color-secondary2) 10%
+    var(--color-primary) 70%,
+    var(--color-secondary2) 30%
   );
   border: 1px solid var(--color-primary);
-  border-radius: 1rem;
+  border-radius: 0.2rem;
 }
 
 h3 {
